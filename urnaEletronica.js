@@ -1,6 +1,7 @@
 function urnaEletronica(){
     // aqui vai todo o código do programa...
     console.log('Iniciando a votação');
+    console.log('Reiniciando os contadores');
 
     let totalVotosCandidato1 = 0,
         totalVotosCandidato2 = 0,
@@ -22,8 +23,10 @@ function urnaEletronica(){
        console.log('| 5 | Branco');
        console.log('| 8 | Nulo');
        console.log('| 0 | Encerrar a votação');
+    
+       voto = parseInt(prompt('| 1 | Candidato 1\n| 2 | Candidato 2\n| 3 | Cantdidato 3\n| 5 | Branco\n| 8 | Nulo\n\nDigite sua opção de voto:'));
 
-    voto = parseInt(prompt('| 1 | Candidato 1\n| 2 | Candidato 2\n| 3 | Cantdidato 3\n| 5 | Branco\n| 8 | Nulo\n\nDigite sua opção de voto:'));
+// do (voto !== 0) {
 
     switch (voto) {
         case 1:
@@ -51,9 +54,13 @@ function urnaEletronica(){
             console.log('O voto foi anulado');
             alert('Você votou Nulo.');
             break;
+        case 0:
+            console.log('Você encerrou a votação')
+            alert('Você encerrou a votação');
         default:
             return;
-    }
+        }
+    // }while()
 }
 
 // // Estrutura de repetição: do-while (faça-enquanto)
