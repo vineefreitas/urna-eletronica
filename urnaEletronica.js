@@ -1,13 +1,23 @@
-function urnaEletronica(){
+function urnaEletronica() {
     // aqui vai todo o código do programa...
-    console.log('Iniciando a votação');
-    console.log('Reiniciando os contadores');
+    let voto;
+        votosCandidato1 = 0,
+        votosCandidato2 = 0,
+        votosCandidato3 = 0,
+        votosBrancos = 0,
+        votosNulos = 0,
+        totalVotos = 0;
 
-    let totalVotosCandidato1 = 0,
-        totalVotosCandidato2 = 0,
-        totalVotosCandidato3 = 0,
-        totalVotosBranco = 0,
-        totalVotosNulo = 0;
+    let nomeGanhador,
+        votosGanhador,
+        ganhador = true;
+
+    let nomeCandidato1,
+        nomeCandidato2,
+        nomeCandidato3;
+
+    let encerrarVotacao = '',
+        senhaMesario;
 
         // // equivalente a:
         // let totalVotosCandidato1 = 0,
@@ -16,52 +26,123 @@ function urnaEletronica(){
         // let totalVotosBranco = 0,
         // let totalVotosNulo = 0;
 
-       // instruções repetidas no loop
-       console.log('| 1 | Candidato 1');
-       console.log('| 2 | Candidato 2');
-       console.log('| 3 | Candidato 3');
+    console.log('Iniciando a votação');
+
+    console.log('** CONFIGURAÇÃO DA URNA **');
+    senhaMesario = parseInt(prompt('Digite a senha do mesário:'));
+    alert('Senha definida com sucesso!');
+    nomeCandidato1 = prompt ('Digite o nome do candidato 1:');
+    nomeCandidato2 = prompt ('Digite o nome do candidato 2:');
+    nomeCandidato3 = prompt ('Digite o nome do candidato 3:');
+
+    // instruções repetidas no loop
+    do {
+       console.clear();
+       console.log('| 1 | Candidato 1: ' + nomeCandidato1);
+       console.log('| 2 | Candidato 2: ' + nomeCandidato2);
+       console.log('| 3 | Candidato 3: ' + nomeCandidato3);
        console.log('| 5 | Branco');
        console.log('| 8 | Nulo');
-       console.log('| 0 | Encerrar a votação');
     
-       voto = parseInt(prompt('| 1 | Candidato 1\n| 2 | Candidato 2\n| 3 | Cantdidato 3\n| 5 | Branco\n| 8 | Nulo\n\nDigite sua opção de voto:'));
+       voto = parseInt(prompt('Digite sua opção de voto:'));
+
+       totalVotos++;
+
+       if (voto === 1) {
+        votosCandidato1++;
+        alert('Você votou no ' + nomeCandidato1)
+       } else if (voto === 2) {
+        votosCandidato2++;
+        alert('Você votou no ' + nomeCandidato2)
+       } else if (voto === 3) {
+        votosCandidato3++;
+        alert('Você votou no ' + nomeCandidato3)
+       } else if (voto === 5) {
+       votosBrancos++;
+       alert('Você votou Branco')
+       } else if (voto === 8) {
+       votosNulos++;
+       alert('Você votou Nulo')
+       } else if (voto === senhaMesario) {
+        encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? \nDigite [S] para sim e [N] para não').charAt(0).toUpperCase();
+
+        if (encerrarVotacao !== 'S' && encerrarVotacao !== 'N') {
+            alert('Opção inválida!');
+        }
+        totalVotos--;
+       }else {
+        return; // botão de emergência
+       }
+    }while (encerrarVotacao !== 'S');
+
+    // apresenta os resultados
+    console.clear();
+    console.log('** BOLETIM DE URNA - RESULTADOS **');
+    console.log('Total de votos: ' + totalVotos);
+    console.log('Total de votos do candidato 1: ' + votosCandidato1 + ' voto(s) (' + (votosCandidato1 / totalVotos * 100).toFixed(2) + '%)');
+    console.log('Total de votos do candidato 2: ' + votosCandidato2 + ' voto(s) (' + (votosCandidato2 / totalVotos * 100).toFixed(2) + '%)');
+    console.log('Total de votos do candidato 3: ' + votosCandidato3 + ' voto(s) (' + (votosCandidato3 / totalVotos * 100).toFixed(2) + '%)');
+    console.log('Total de votos brancos: ' + votosBrancos+ ' voto(s) (' + (votosBrancos/ totalVotos * 100).toFixed(2) + '%)');
+    console.log('Total de votos nulos: ' + votosNulos + ' voto(s) (' + (votosNulos / totalVotos * 100).toFixed(2) + '%)');
+
+    // determina ganhador
+    if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3) {
+        nomeGanhador = nomeCandidato1;
+        votosGanhador = votosCandidato1 + votosBrancos;
+    } else if (votosCandidato2 > votosCandidato1 && votosCandidato2 > votosCandidato3) {
+        nomeGanhador = nomeCandidato2;
+        votosGanhador = votosCandidato2 + votosBrancos;
+    } else if (votosCandidato3 > votosCandidato1 && votosCandidato3 > votosCandidato2) {
+        nomeGanhador = nomeCandidato3;
+        votosGanhador = votosCandidato3 + votosBrancos;
+    } else {
+        ganhador = false;
+    }
+    // Apresenta o ganhador
+    console.log('------');
+    
+    if (ganhador) {
+        console.log('O ganhador nesta urna foi o candidato ' + nomeGanhador + ' com ' + votosGanhador + ' voto(s) absoluto(s) (' + (votosGanhador / totalVotos * 100).toFixed(2) + '%)');
+    } else {
+        console.log('Não houve ganhador nesta urna (empate entre dois ou mais candidatos).');
+    }
+}
 
 // do (voto !== 0) {
 
-    switch (voto) {
-        case 1:
-            totalVotosCandidato1++;
-            console.log('O candidato 1 recebeu um voto');
-            alert('Você votou no candidato 1.');
-            break;
-        case 2:
-            totalVotosCandidato2++;
-            console.log('O candidato 2 recebeu um voto');
-            alert('Você votou no candidato 2.');
-            break;
-        case 3:
-            totalVotosCandidato3++;
-            console.log('O candidato 3 recebeu um voto');
-            alert('Você votou no candidato 3.');
-            break;
-        case 5:
-            totalVotosBranco++;
-            console.log('Voto em Branco');
-            alert('Você votou Branco.');
-            break;
-        case 8:
-            totalVotosNulo++;
-            console.log('O voto foi anulado');
-            alert('Você votou Nulo.');
-            break;
-        case 0:
-            console.log('Você encerrou a votação')
-            alert('Você encerrou a votação');
-        default:
-            return;
-        }
+    // switch (voto) {
+    //     case 1:
+    //         totalVotosCandidato1++;
+    //         console.log('O candidato 1 recebeu um voto');
+    //         alert('Você votou no candidato 1.');
+    //         break;
+    //     case 2:
+    //         totalVotosCandidato2++;
+    //         console.log('O candidato 2 recebeu um voto');
+    //         alert('Você votou no candidato 2.');
+    //         break;
+    //     case 3:
+    //         totalVotosCandidato3++;
+    //         console.log('O candidato 3 recebeu um voto');
+    //         alert('Você votou no candidato 3.');
+    //         break;
+    //     case 5:
+    //         totalVotosBranco++;
+    //         console.log('Voto em Branco');
+    //         alert('Você votou Branco.');
+    //         break;
+    //     case 8:
+    //         totalVotosNulo++;
+    //         console.log('O voto foi anulado');
+    //         alert('Você votou Nulo.');
+    //         break;
+    //     case 0:
+    //         console.log('Você encerrou a votação')
+    //         alert('Você encerrou a votação');
+    //     default:
+    //         return;
+    //     }
     // }while()
-}
 
 // // Estrutura de repetição: do-while (faça-enquanto)
 
