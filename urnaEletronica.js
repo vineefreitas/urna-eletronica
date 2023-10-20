@@ -47,7 +47,6 @@ function urnaEletronica() {
         console.log('| 2 | Candidato 2: ' + nomeCandidato2);
         console.log('| 3 | Candidato 3: ' + nomeCandidato3);
         console.log('| 5 | Branco');
-        console.log('| 8 | Nulo');
     
         voto = parseInt(prompt('Digite sua opção de voto:'));
 
@@ -65,9 +64,13 @@ function urnaEletronica() {
         } else if (voto === 5) {
         votosBrancos++;
         alert('Você votou Branco')
-        } else if (voto === 8) {      
+        } else if (voto != 1 && voto != 2 && voto != 3 && voto != 5 && voto != senhaMesario) {
+        let confirmacao = confirm('Você irá anular o seu voto, deseja continuar?');
+        if (confirmacao == true) {   
         votosNulos++;
-        }else if (voto === senhaMesario) {
+        }
+
+    }else if (voto === senhaMesario) {
 
             encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? \nDigite [S] para sim e [N] para não').charAt(0).toUpperCase();
 
