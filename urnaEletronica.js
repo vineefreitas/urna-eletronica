@@ -1,5 +1,5 @@
 function urnaEletronica() {
-    // aqui vai todo o código do programa...
+// aqui vai todo o código do programa...
     let voto;
         votosCandidato1 = 0,
         votosCandidato2 = 0,
@@ -18,13 +18,6 @@ function urnaEletronica() {
 
     let encerrarVotacao = '',
         senhaMesario;
-
-        // // equivalente a:
-        // let totalVotosCandidato1 = 0,
-        // let totalVotosCandidato2 = 0,
-        // let totalVotosCandidato3 = 0,
-        // let totalVotosBranco = 0,
-        // let totalVotosNulo = 0;
 
     console.log('Iniciando o programa');
 
@@ -119,99 +112,3 @@ function urnaEletronica() {
         console.log('Não houve ganhador nesta urna (empate entre dois ou mais candidatos).');
     }
 }
-
-// do (voto !== 0) {
-
-    // switch (voto) {
-    //     case 1:
-    //         totalVotosCandidato1++;
-    //         console.log('O candidato 1 recebeu um voto');
-    //         alert('Você votou no candidato 1.');
-    //         break;
-    //     case 2:
-    //         totalVotosCandidato2++;
-    //         console.log('O candidato 2 recebeu um voto');
-    //         alert('Você votou no candidato 2.');
-    //         break;
-    //     case 3:
-    //         totalVotosCandidato3++;
-    //         console.log('O candidato 3 recebeu um voto');
-    //         alert('Você votou no candidato 3.');
-    //         break;
-    //     case 5:
-    //         totalVotosBranco++;
-    //         console.log('Voto em Branco');
-    //         alert('Você votou Branco.');
-    //         break;
-    //     case 8:
-    //         totalVotosNulo++;
-    //         console.log('O voto foi anulado');
-    //         alert('Você votou Nulo.');
-    //         break;
-    //     case 0:
-    //         console.log('Você encerrou a votação')
-    //         alert('Você encerrou a votação');
-    //     default:
-    //         return;
-    //     }
-    // }while()
-
-// // Estrutura de repetição: do-while (faça-enquanto)
-
-// let contador = 0;
-
-// do {
-//     console.log ('Instrução com contador em' , contador);
-//     contador += 1;
-// } while (contador <= 10);
-
-// // Estrutura de repetição while (enquanto)
-
-// // const opcao = 0;
-
-// // while (opcao !== 0){
-// //     console.log ('Instrução 1')
-// //     console.log ('Instrução 2')
-// //     console.log ('Instrução 3')
-// //     console.log ('Instrução 4')
-// //     console.log ('Instrução 5')
-// //     console.log ('Instrução 6')
-// // }
-
-// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/switch
-// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/parseInt
-// https://www.devmedia.com.br/javascript-switch/39761
-// https://cursos.alura.com.br/forum/topico-usando-o-prompt-121601
-// https://www.javascriptprogressivo.net/2018/07/Como-Receber-Dados-Usuario-Metodo-prompt.html
-// https://www.devmedia.com.br/alert-em-javascript/37208
-
-// // Estrutura switch-case equivelente a:
-
-// if (voto === 1) {
-//     totalVotosCandidato1++;
-//     console.log('O candidato 1 recebeu um voto')
-// } else if (voto === 2) {
-//     console.log('O candidato 2 recebeu um voto');
-// } else {
-//     return;
-// } while (voto !== 0);
-
-// }
-// Estrutura switch-case
-// const opcao =3;
-
-// switch(opcao) {
-//     case 1:
-//         console.log('Opção é 1');
-//         break;
-//     case 2:
-//         console.log('Opção é 2');
-//         break;
-//     default:
-//         console.log('Nenhuma das opções');
-
-//         //equivalente a estrutura switch-case
-//         if (opcao === 1){
-//             console.log ('Opção é 1');
-//         }
-// }
