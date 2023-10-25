@@ -19,15 +19,18 @@ function urnaEletronica() {
     let encerrarVotacao = '',
         senhaMesario;
 
+
     console.log('Iniciando o programa');
 
     console.log('** CONFIGURAÇÕES DA URNA **');
 
-    senhaMesario = parseInt(prompt('Digite a senha do mesário:'));
-    if (senhaMesario == '') {
-        alert('Opção inválida!');
-    }else {
-        alert('Senha definida com sucesso!');
+    senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
+
+    if (isNaN(senhaMesario)) {
+        alert('Opção inválida!')
+        //olhar estrutura de confirmação de anulação de voto para montar a estrutura de repetição
+    }else if (senhaMesario) {
+        alert('Senha definida com sucesso!')
     }
 
     nomeCandidato1 = prompt ('Digite o nome do candidato 1:');
