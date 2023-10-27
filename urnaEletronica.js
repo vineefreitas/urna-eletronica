@@ -1,3 +1,19 @@
+function dataHoraAtual() {
+    const dataHora = new Date();
+    // const dia = dataHora.getDate();
+    // const mes = dataHora.getMonth() + 1;
+    // const ano = dataHora.getFullYear();
+    // const hora = dataHora.getHours;
+    // const min = dataHora.getMinutes;
+    // const seg = dataHora.getSeconds;
+    // const ms = dataHora.getMilliseconds;
+
+    // return `${dia}/${mes}/${ano} - ${hora}:${min}:${seg}:${ms})`;
+
+    // equivalente a ↓
+    return `${dataHora.getDate()}/${dataHora.getMonth() + 1}/${dataHora.getFullYear()}) - ${dataHora.getHours}:${dataHora.getMinutes}:${dataHora.getSeconds}:${dataHora.getMilliseconds}`;
+}
+
 function urnaEletronica() {
 // aqui vai todo o código do programa...
     let voto;
@@ -17,7 +33,9 @@ function urnaEletronica() {
         nomeCandidato3;
 
     let encerrarVotacao = '',
-        senhaMesario;
+        senhaMesario,
+        dataHoraInicial,
+        dataHoraFinal;
 
 
     console.log('Iniciando o programa');
@@ -42,13 +60,17 @@ function urnaEletronica() {
     nomeCandidato3 = prompt ('Digite o nome do candidato 3:');
     alert('Você defininiu ' + nomeCandidato3 + ' como candidato 3');
 
+    
+    dataHoraInicial = dataHoraAtual();
+
     // instruções repetidas no loop
+    // laço de votação
     do {
         console.clear();
         console.log('Iniciando a votação');
-        console.log('| 1 | Candidato 1: ' + nomeCandidato1);
-        console.log('| 2 | Candidato 2: ' + nomeCandidato2);
-        console.log('| 3 | Candidato 3: ' + nomeCandidato3);
+        console.log(`| 1 | Candidato 1: ${nomeCandidato1}`);
+        console.log(`| 2 | Candidato 2: ${nomeCandidato2}`);
+        console.log(`| 3 | Candidato 3: ${nomeCandidato3}`);
         console.log('| 5 | Branco');
     
         voto = parseInt(prompt('Digite sua opção de voto:'));
@@ -90,11 +112,12 @@ function urnaEletronica() {
     console.clear();
     console.log('** BOLETIM DE URNA - RESULTADOS **');
     console.log('Total de votos: ' + totalVotos);
-    console.log('Total de votos do candidato 1: ' + votosCandidato1 + ' voto(s) (' + (votosCandidato1 / totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos do candidato 2: ' + votosCandidato2 + ' voto(s) (' + (votosCandidato2 / totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos do candidato 3: ' + votosCandidato3 + ' voto(s) (' + (votosCandidato3 / totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos brancos: ' + votosBrancos+ ' voto(s) (' + (votosBrancos/ totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos nulos: ' + votosNulos + ' voto(s) (' + (votosNulos / totalVotos * 100).toFixed(2) + '%)');
+    // equivalente ↓ : console.log('Total de votos do candidato 1: ' + votosCandidato1 + ' voto(s) (' + (votosCandidato1 / totalVotos * 100).toFixed(2) + '%)');
+    console.log(`Total de votos do(a) candidato(a) $nomeCandidato1: ${votosCandidato1} voto(s) (${(votosCandidato1 / totalVotos * 100).toFixed(2)}%)`);
+    console.log(`Total de votos do(a) candidato(a) $nomeCandidato2: ${votosCandidato2} voto(s) (${(votosCandidato2 / totalVotos * 100).toFixed(2)}%)`);
+    console.log(`Total de votos do(a) candidato(a) ' + votosCandidato3 + ' voto(s) (' + (votosCandidato3 / totalVotos * 100).toFixed(2) + '%)`);
+    console.log(`Total de votos brancos: ' + votosBrancos+ ' voto(s) (' + (votosBrancos/ totalVotos * 100).toFixed(2) + '%)`);
+    console.log(`Total de votos nulos: ' + votosNulos + ' voto(s) (' + (votosNulos / totalVotos * 100).toFixed(2) + '%)`);
 
     // determina ganhador
     if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3) {
@@ -117,4 +140,9 @@ function urnaEletronica() {
     } else {
         console.log('Não houve ganhador nesta urna (empate entre dois ou mais candidatos).');
     }
+
+    dataHoraFinal = dataHoraAtual();
+
+    console.log(`Data/hora de ínicio da votação: ${dataHoraInicial}`);
+    console.log(`Data/hora de término da votação: ${dataHoraFinal}`);
 }
