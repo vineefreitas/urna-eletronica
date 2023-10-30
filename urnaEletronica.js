@@ -1,17 +1,37 @@
+function verificaUrnaAtual() {
+    fetch('urnaEletronica.js')
+    .then(response => response.text())
+    .then(response => CryptoJS.SHA256(response).toString())
+    .then(hashUrnaAtual => {
+        fetch('hashValido')
+        .then(response => response.text())
+        .then(hashValido => {
+
+            if (hashUrnaAtual === hashValido) {
+                console.log('Urna verificada, código integro.')
+            } else {
+                console.log('URNA ADULTERADA! HASHES NÃO CONFEREM!');
+                console.log(`HASH DA URNA: ${hashUrnaAtual}`);
+                console.log(`HASH ESPERADO: ${hashValido}`);
+            }
+        });
+    });
+}
+
 function dataHoraAtual() {
     const dataHora = new Date();
     // const dia = dataHora.getDate();
     // const mes = dataHora.getMonth() + 1;
     // const ano = dataHora.getFullYear();
-    // const hora = dataHora.getHours;
-    // const min = dataHora.getMinutes;
-    // const seg = dataHora.getSeconds;
-    // const ms = dataHora.getMilliseconds;
+    // const hora = dataHora.getHours();
+    // const min = dataHora.getMinutes();
+    // const seg = dataHora.getSeconds();
+    // const ms = dataHora.getMilliseconds();
 
     // return `${dia}/${mes}/${ano} - ${hora}:${min}:${seg}:${ms})`;
 
     // equivalente a ↓
-    return `${dataHora.getDate()}/${dataHora.getMonth() + 1}/${dataHora.getFullYear()}) - ${dataHora.getHours}:${dataHora.getMinutes}:${dataHora.getSeconds}:${dataHora.getMilliseconds}`;
+    return `${dataHora.getDate()}/${dataHora.getMonth() + 1}/${dataHora.getFullYear()} - ${dataHora.getHours()}:${dataHora.getMinutes()}:${dataHora.getSeconds()}:${dataHora.getMilliseconds()}`;
 }
 
 function urnaEletronica() {
@@ -50,6 +70,8 @@ function urnaEletronica() {
     }else if (senhaMesario) {
         alert('Senha definida com sucesso!')
     }
+
+    verificaUrnaAtual();
 
     nomeCandidato1 = prompt ('Digite o nome do candidato 1:');
     alert('Você defininiu ' + nomeCandidato1 + ' como candidato 1');
