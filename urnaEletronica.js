@@ -57,19 +57,18 @@ function urnaEletronica() {
         dataHoraInicial,
         dataHoraFinal;
 
+    do {
+        console.log('Iniciando o programa');
+        console.log('** CONFIGURAÇÕES DA URNA **');
 
-    console.log('Iniciando o programa');
+        senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
 
-    console.log('** CONFIGURAÇÕES DA URNA **');
-
-    senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
-
-    if (isNaN(senhaMesario)) {
-        alert('Opção inválida!')
-        //olhar estrutura de confirmação de anulação de voto para montar a estrutura de repetição
-    }else if (senhaMesario) {
-        alert('Senha definida com sucesso!')
-    }
+        if (isNaN(senhaMesario)) {
+            alert('Opção inválida!')
+        }else if (senhaMesario) {
+            alert('Senha definida com sucesso!')
+        }
+    }while (isNaN(senhaMesario));
 
     verificaUrnaAtual();
 
@@ -114,10 +113,8 @@ function urnaEletronica() {
         } else if (voto != 1 && voto != 2 && voto != 3 && voto != 5 && voto != senhaMesario) {
         let confirmacao = confirm('Você irá anular o seu voto, deseja continuar?');
         if (confirmacao == true) {   
-        votosNulos++;
-        }
-
-    }else if (voto === senhaMesario) {
+        votosNulos++;}
+        } else if (voto === senhaMesario) {
 
             encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? \nDigite [S] para sim e [N] para não').charAt(0).toUpperCase();
 
@@ -125,9 +122,9 @@ function urnaEletronica() {
             alert('Opção inválida!');
         }
         totalVotos--;
-       }else {
+        }else {
         return; // botão de emergência
-       }
+        }
     }while (encerrarVotacao !== 'S');
 
     // apresenta os resultados
