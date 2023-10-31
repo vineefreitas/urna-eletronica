@@ -72,8 +72,16 @@ function urnaEletronica() {
 
     verificaUrnaAtual();
 
-    nomeCandidato1 = prompt ('Digite o nome do candidato 1:');
-    alert('Você defininiu ' + nomeCandidato1 + ' como candidato 1');
+// VERIFICAR ESTRUTURA DE REPETIÇÃO PARA FIXAR, POIS ESSA PARTE SERÁ APAGADA FUTURAMENTE
+    do{
+        nomeCandidato1 = parseInt(prompt ('Digite o nome do candidato 1:'));
+
+        if (nomeCandidato1 !== '') {
+            alert('Digite um nome válido!')
+        }else if (nomeCandidato1) {
+            alert('Você defininiu ' + nomeCandidato1 + ' como candidato 1')
+        }
+    }while(nomeCandidato1 !== '');
 
     nomeCandidato2 = prompt ('Digite o nome do candidato 2:');
     alert('Você defininiu ' + nomeCandidato2 + ' como candidato 2');
