@@ -1,21 +1,30 @@
-function verificaUrnaAtual() {
-    fetch('urnaEletronica.js')
+async function verificaUrnaAtual() {
+
+    let hashUrnaAtual;
+    let hashValido;
+
+    await fetch('urnaEletronica.js')
     .then(response => response.text())
     .then(response => CryptoJS.SHA256(response).toString())
-    .then(hashUrnaAtual => {
-        fetch('hashValido')
-        .then(response => response.text())
-        .then(hashValido => {
+    .then(response => hashUrnaAtual = response);
 
-            if (hashUrnaAtual === hashValido) {
-                console.log('Urna verificada, código integro.')
-            } else {
-                console.log('URNA ADULTERADA! HASHES NÃO CONFEREM!');
-                console.log(`HASH DA URNA: ${hashUrnaAtual}`);
-                console.log(`HASH ESPERADO: ${hashValido}`);
-            }
-        });
-    });
+    await fetch('hashValido')
+    .then(response => response.text())
+    .then(response => hashValido = response); 
+        // {
+        //     if (hashUrnaAtual === hashValido) {
+        //         console.log('Urna verificada, código integro.')
+        //     } else {
+        //         console.log('URNA ADULTERADA! HASHES NÃO CONFEREM!');
+        //         console.log(`HASH DA URNA: ${hashUrnaAtual}`);
+        //         console.log(`HASH ESPERADO: ${hashValido}`);
+        //     }
+        // };
+    return {
+        hashUrnaAtual: hashUrnaAtual,
+        hashValido: hashValido,
+        status: hashUrnaAtual === hashValido
+    }
 }
 
 function dataHoraAtual() {
@@ -34,7 +43,7 @@ function dataHoraAtual() {
     return `${dataHora.getDate()}/${dataHora.getMonth() + 1}/${dataHora.getFullYear()} - ${dataHora.getHours()}:${dataHora.getMinutes()}:${dataHora.getSeconds()}:${dataHora.getMilliseconds()}`;
 }
 
-function urnaEletronica() {
+async function urnaEletronica() {
 // aqui vai todo o código do programa...
     let voto;
         votosCandidato1 = 0,
@@ -172,4 +181,16 @@ function urnaEletronica() {
 
     console.log(`Data/hora de ínicio da votação: ${dataHoraInicial}`);
     console.log(`Data/hora de término da votação: ${dataHoraFinal}`);
+
+    verificaUrnaAtual().then(verificacao => {
+        if (verificacao.status) {
+            console.log('Hashes verificados, urna integra.');
+        } else {
+            console.log('Urna adulterada !')
+            console.log(`Hash da urna: ${verificacao.hashUrnaAtual}`);
+            console.log(`Hash esperado: ${verificacao.hashValido}`);
+        }
+        console.log('Fim do programa.');
+    });
+
 }
